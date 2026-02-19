@@ -192,19 +192,15 @@ plt.title("Confusion Matrix")
 plt.show()
 
 # -------------------- STEP 10 : SAMPLE PREDICTION -------------------- #
-sample_input = X_test[12].clone().unsqueeze(0).detach().type(torch.float32)
+sample = X_test_tensor[12].unsqueeze(0)
 
 with torch.no_grad():
-    output = model(sample_input)
-    predicted_class_index = torch.argmax(output[0]).item()
-    predicted_class_label = label_encoder.inverse_transform(
-        [predicted_class_index]
-    )[0]
-
-print("\nName: S DINESH RAGHAVENDARA")
-print("Register No: 212224040078")
-print(f"\nPredicted class: {predicted_class_label}")
-print(f"Actual class: {label_encoder.inverse_transform([y_test[12].item()])[0]}")
+    output = model(sample)
+    _, pred = torch.max(output, 1)
+print("Name: S Dinesh Raghvendara")
+print("REG.No: 212224040078")
+print("Predicted class for sample input:", chr(pred.item()+65))
+print("Actual class for sample input:", chr(y_test_tensor[12].item()+65))
 
 ```
 
@@ -231,6 +227,7 @@ print(f"Actual class: {label_encoder.inverse_transform([y_test[12].item()])[0]}"
 
 ### New Sample Data Prediction
 
+<img width="516" height="116" alt="image" src="https://github.com/user-attachments/assets/95077bbf-a0d2-460b-85e9-5535889364f5" />
 
 
 ## RESULT
